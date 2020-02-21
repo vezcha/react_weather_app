@@ -1,8 +1,16 @@
 .App {
   text-align: center;
   background-color: skyblue;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-top: 50px;
+  padding-bottom: 50px;
 }
 
 input {
   margin: 10px;
+}
+
+body {
+  /* background-image: linear-gradient(to right, skyblue, teal); */
 }

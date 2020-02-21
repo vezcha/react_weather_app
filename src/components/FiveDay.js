@@ -7,7 +7,7 @@ export default class FiveDay extends Component {
         <h2>5 Day forecast for [City]</h2>
         <hr />
 
-        <div class="dayView">
+        <div className="dayView">
           <div style={dateStyle}>
             <h3>Date</h3>
           </div>
@@ -33,7 +33,7 @@ export default class FiveDay extends Component {
         </div>
         <hr />
 
-        <div class="dayView">
+        <div className="dayView">
           <div style={dateStyle}>
             <h3>Date</h3>
           </div>
