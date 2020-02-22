@@ -1,63 +1,38 @@
 import React, { Component } from "react";
 
+//import fiveDayItem component
+import FiveDayItem from "./FiveDayItem";
+
 export default class FiveDay extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      forecast: {
+        city: {
+          name: ""
+        },
+        list: []
+      }
+    };
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.forecast !== prevProps.forecast) {
+      this.setState({
+        forecast: this.props.forecast
+      });
+    }
+  }
+
   render() {
     return (
       <div style={this.getStyle()}>
-        <h2>5 Day forecast for [City]</h2>
+        <h2>5 Day / 3 hour forecast for {this.state.forecast.city.name}</h2>
         <hr />
-
-        <div className="dayView">
-          <div style={dateStyle}>
-            <h3>Date</h3>
-          </div>
-          <img
-            src="logo192.png"
-            width="50"
-            height="50"
-            style={iconStyle}
-            alt="weather_icon"
-          />
-          <table width="50%" style={extendedTableStyle}>
-            <tbody>
-              <tr>
-                <td>Temp</td>
-                <td>Main</td>
-              </tr>
-              <tr>
-                <td>Humidity</td>
-                <td>WindSpeed</td>
-              </tr>
-            </tbody>
-          </table>
+        <div style={fItemsStyle}>
+          <FiveDayItem forecastList={this.state.forecast.list} />
         </div>
-        <hr />
-
-        <div className="dayView">
-          <div style={dateStyle}>
-            <h3>Date</h3>
-          </div>
-          <img
-            src="logo192.png"
-            width="50"
-            height="50"
-            style={iconStyle}
-            alt="weather_icon"
-          />
-          <table width="50%" style={extendedTableStyle}>
-            <tbody>
-              <tr>
-                <td>Temp</td>
-                <td>Main</td>
-              </tr>
-              <tr>
-                <td>Humidity</td>
-                <td>WindSpeed</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <hr />
       </div>
     );
   }
@@ -65,9 +40,9 @@ export default class FiveDay extends Component {
   getStyle = () => {
     return {
       float: "left",
-      backgroundColor: "pink",
+      backgroundColor: "#CCC",
       marginLeft: "200px",
-      marginTop: "100px",
+      marginTop: "50px",
       marginRight: "auto",
       width: "300px",
       textAlign: "center",
@@ -76,17 +51,7 @@ export default class FiveDay extends Component {
   };
 }
 
-const iconStyle = {
-  float: "left",
-  marginLeft: "30px",
-  marginRight: "30px"
-};
-
-const dateStyle = {
-  width: "100px",
-  textAlign: "-webkit-center"
-};
-
-const extendedTableStyle = {
-  marginBottom: "15px"
+const fItemsStyle = {
+  overflowY: "scroll",
+  height: "600px"
 };

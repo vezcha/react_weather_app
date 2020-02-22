@@ -17,10 +17,19 @@ export default class Search extends Component {
   onSubmit = e => {
     e.preventDefault();
     //assume zip code
-    this.props.zipSearch(this.state.zipCode);
-    this.setState({
-      zipCode: ""
-    });
+    if (this.state.zipCode.length === 5) {
+      this.props.zipSearch(this.state.zipCode);
+      this.setState({
+        zipCode: ""
+      });
+    } else if (this.state.cityName.length >= 3) {
+      this.props.citySearch(this.state.cityName);
+      this.setState({
+        cityName: ""
+      });
+    } else {
+      alert("Please check your search parameters");
+    }
   };
 
   render() {
@@ -41,8 +50,6 @@ export default class Search extends Component {
             value={this.state.cityName}
             onChange={this.onChange}
           />
-          City Select:{" "}
-          <select id="city" name="citySelection" style={selectStyle}></select>
           <input
             id="searchSubmit"
             type="submit"
@@ -56,21 +63,16 @@ export default class Search extends Component {
 
   getStyle = () => {
     return {
-      backgroundColor: "red",
+      backgroundColor: "",
       textAlign: "center"
     };
   };
 }
 
-//custom styling
-const selectStyle = {
-  width: "200px"
-};
-
 const searchStyle = {
   padding: "10px",
   width: "100px",
-  backgroundColor: "lime",
+  backgroundColor: "#6CF",
   borderStyle: "solid",
   borderColor: "black",
   borderWidth: "3px",
